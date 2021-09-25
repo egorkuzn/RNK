@@ -5,16 +5,16 @@ using namespace rnk;
 
 Nucl RNK::getNuclByIndex(const size_t index) const{
 	assert(index < size_vector);
-	return (Nucl)((baseArr[(index/4)] >> (3 - index % 4) * 2)&3);
+	return (Nucl)((baseArr[index/4] >> (3 - index % 4) * 2) & 3);
 }
 
-void RNK::changeNuclByIndex(const size_t index, Nucl elem) {
+void RNK::changeNuclByIndex( size_t index, Nucl elem) {
 	assert(index < this->capacity());
-	baseArr[index / 4] &= ~((unsigned char)3 << (3 - index % 4) * 2);
+	baseArr[index / 4] -= ((baseArr[index / 4] >> (3 - index % 4) * 2) & 3) << ((3 - index % 4) * 2);
 	baseArr[index / 4] += elem << (3 - index % 4) * 2;
 }
 
-RNK::NuclRef::NuclRef(const size_t index, RNK& obj) {
+RNK::NuclRef::NuclRef( size_t index, RNK& obj) {
 	nucl_index = index;
 	rnk_obj = &obj;
 }
@@ -34,25 +34,39 @@ RNK::NuclRef RNK::operator[](const size_t index) {
 
 void RNK::push_back(const Nucl elem){
 	++size_vector;
-	if (size_vector / 4 > size_baseArr) {
+	if (size_vector > size_baseArr * 4) {
 		Push();
 	}
-	baseArr[(size_vector - 1)/4] += elem << (3 - (size_vector - 1)) * 2;
+	baseArr[(size_vector - 1)/4] += (unsigned char)elem << (3 - (size_vector - 1) % 4) * 2;
+}
+
+RNK::RNK(Nucl elem, size_t count)
+{
+	for (size_t i = 0; i < count; ++i) {
+		this->push_back(elem);
+	}
 }
 
 const size_t RNK::capacity(void) const{
 	return size_vector;
 }
 
-RNK& RNK::operator=(const RNK& r2) {
-	for (size_t i = 0; i < this->capacity(); ++i) {
+RNK::RNK(const RNK& other) {
+	for (size_t i = 0; i < other.capacity(); ++i) {
+		this->push_back(other.getNuclByIndex(i));
+	}
+}
+
+RNK& RNK::operator=(RNK& r2) {
+	if (size_vector != 0){
+		size_vector = 0;
+		size_baseArr = 0;
+		delete[] baseArr;
+	}
+	for (size_t i = 0; i < r2.capacity(); ++i) {
 		this->push_back(r2.getNuclByIndex(i));
 	}
 	return *this;
-}
-
-RNK::RNK(const RNK& r2) {
-	(*this) = r2;
 }
 
 RNK RNK::operator+(RNK& r2) {
@@ -66,9 +80,75 @@ RNK RNK::operator+(RNK& r2) {
 	return sum;
 }
 
+size_t RNK::cardinality(const Nucl value){
+	size_t inc = 0;
+	for (size_t i = 0; i < this->capacity(); ++i) {
+		if ((*this)[i] == value) {
+			++inc;
+		}
+	}
+	return inc;
+}
 
+void RNK::trim( size_t lastIndex){
+	for (size_t i = size_vector - 1; i >= lastIndex; --i) {
+		(*this)[i] = A;
+		if (size_vector != 0) {
+			--size_vector;
+		}
+		else {
+			return;
+		}
+		if (i % 4 == 0) {
+			Pop();
+		}
+		if (size_vector == 0) {
+			return;
+		}
+	}
+}
+
+bool RNK::operator==(RNK& r2) {	
+	if (size_vector == r2.capacity()) {
+		for (size_t i = 0; i < size_vector; ++i) {
+			if ((Nucl)(*this)[i] != (Nucl)r2[i]) {
+				return false;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+RNK& RNK::operator!(void){
+	RNK copy = *this;
+	for (size_t i = 0; i < size_vector; ++i) {
+		copy[i] = (Nucl)(((unsigned char)3 - (Nucl)(*this)[i]) & 3);
+	}
+	return copy;
+}
+
+bool RNK::operator!=(RNK& r2) {
+	return !((*this) == r2);
+}
+
+bool RNK::isComplementary(RNK& r2){
+	return *this == !r2;
+}
+
+RNK& RNK::split(size_t index) {
+	RNK copy;
+	for (size_t i = index; i < size_vector; ++i) {
+		copy.push_back((*this).getNuclByIndex(i));
+	}
+	this->trim(index);
+	return copy;
+}
 
 int main() {
+	RNK rnk1(C, 4);	
+	RNK rnk2;
+	rnk2 = rnk1.split(2);
 
 	return 0;
 }
