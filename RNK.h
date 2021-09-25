@@ -9,25 +9,34 @@ namespace rnk {
 	class RNK {
 	public:
 		RNK() {};
-		void push_back(Nucl elem);
-		class NuclRef {
-		public:			
+		void push_back(const Nucl elem) ;//+
+		class NuclRef {//+
+		public:
+			NuclRef(const size_t index, RNK& obj);
 			NuclRef& operator=(Nucl elem);
 			operator Nucl();
 		private:
-			size_t nucl_idx;
-			int* root = nullptr;
+			size_t nucl_index;
+			RNK* rnk_obj = nullptr;
 		};
-		NuclRef operator[](size_t index);
+		Nucl getNuclByIndex(const size_t index) const; //+
+		void changeNuclByIndex(const size_t index, Nucl elem);//+
+		const size_t capacity(void) const;//+
+		size_t cardinality(Nucl value);
+		RNK& operator=(const RNK& r2);//+
+		RNK(const RNK& r2);//+
+		NuclRef operator[](const size_t index);//+
+		RNK operator+(RNK& r2);//+
+		
 		// забыть содержимое от lastIndex и дальше
 		void trim(size_t lastIndex);
 		//для нуклеотида  - число значений
-		size_t capacity(void);
-		size_t cardinality(Nucl value);
+		
+		
 
 		//аналогично но сразу для всех типов тритов
 		//std::unordered_map< Nucl, int, std::hash<int> > cardinality();
-		RNK operator+(RNK& r2);
+		
 		opertator == ;
 		operator!=;
 		operator !;
