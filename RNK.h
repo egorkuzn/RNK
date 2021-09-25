@@ -24,6 +24,7 @@ namespace rnk {
 		//для нуклеотида  - число значений
 		size_t capacity(void);
 		size_t cardinality(Nucl value);
+
 		//аналогично но сразу для всех типов тритов
 		//std::unordered_map< Nucl, int, std::hash<int> > cardinality();
 		RNK operator+(RNK& r2);
