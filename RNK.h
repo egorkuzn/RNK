@@ -30,14 +30,14 @@ namespace rnk {
 		RNK& operator=(const RNK& r2);//+
 		RNK(const RNK& other);//+
 		NuclRef operator[]( size_t index);//+
-		RNK operator+(RNK& r2);//+
+		RNK operator+(const RNK& r2);//+
 		size_t cardinality(const Nucl value);//+
 		void trim( size_t lastIndex);//+		
 		//std::unordered_map< Nucl, int, std::hash<int> > cardinality();		
-		bool operator==(const RNK& r2);//+
+		bool operator==(const RNK& r2) const;//+
 		bool operator!=(RNK& r2);//+
 		RNK operator!(void) const;//+
-		bool isComplementary(const RNK& r2);//+
+		bool isComplementary(const RNK& r2) const;//+
 		RNK split(size_t index);//+
 	private:
 		unsigned char* baseArr = nullptr;
@@ -76,5 +76,11 @@ namespace rnk {
 				--size_baseArr;
 			}
 		}
+	};
+
+	class DNK : public RNK {
+	public:
+		DNK(const RNK& rnk1,const RNK& rnk2);
+		DNK& operator=(const RNK& rnk);
 	};
 }

@@ -4,12 +4,16 @@
 using namespace rnk;
 
 Nucl RNK::getNuclByIndex(const size_t index) const{
-	assert(index < size_vector);
+	if (!(index < size_vector)) {
+		exit(EXIT_FAILURE);
+	}
 	return (Nucl)((baseArr[index/4] >> (3 - index % 4) * 2) & 3);
 }
 
 void RNK::changeNuclByIndex( size_t index, Nucl elem) {
-	assert(index < this->capacity());
+	if (!(index < size_vector)) {
+		exit(EXIT_FAILURE);
+	}
 	baseArr[index / 4] -= ((baseArr[index / 4] >> (3 - index % 4) * 2) & 3) << ((3 - index % 4) * 2);
 	baseArr[index / 4] += elem << (3 - index % 4) * 2;
 }
@@ -29,6 +33,9 @@ RNK::NuclRef::operator Nucl(){
 }
 
 RNK::NuclRef RNK::operator[](const size_t index) {
+	while (index >= this->capacity()) {
+		this->push_back(A);
+	}
 	return NuclRef(index, *this);
 }
 
@@ -81,13 +88,13 @@ RNK& RNK::operator=(const RNK& r2) {
 	return *this;
 }
 
-RNK RNK::operator+(RNK& r2) {
+RNK RNK::operator+(const RNK& r2) {
 	RNK sum;
 	for (size_t i = 0; i < this->capacity(); ++i) {
 		sum.push_back((*this)[i]);
 	}
 	for (size_t i = 0; i < r2.capacity(); ++i) {
-		sum.push_back(r2[i]);
+		sum.push_back(r2.getNuclByIndex(i));
 	}
 	return sum;
 }
@@ -120,7 +127,7 @@ void RNK::trim( size_t lastIndex){
 	}
 }
 
-bool RNK::operator==(const RNK& r2) {	
+bool RNK::operator==(const RNK& r2) const{	
 	if (size_vector == r2.capacity()) {
 		for (size_t i = 0; i < size_vector; ++i) {
 			if ((Nucl)(this->getNuclByIndex(i)) != (Nucl)r2.getNuclByIndex(i)) {
@@ -144,7 +151,7 @@ bool RNK::operator!=(RNK& r2) {
 	return !((*this) == r2);
 }
 
-bool RNK::isComplementary(const RNK& r2){
+bool RNK::isComplementary(const RNK& r2) const{
 	return *this == !r2;
 }
 
@@ -157,31 +164,47 @@ RNK RNK::split(size_t index) {
 	return copy;
 }
 
+DNK::DNK(const RNK& rnk1, const RNK& rnk2){
+	if (rnk1.isComplementary(rnk2)) {
+		for (size_t i = 0; i < rnk1.capacity(); ++i) {
+			this->push_back(rnk1.getNuclByIndex(i));
+		}
+	}
+	else {
+		std::cout << std::endl << "Aren't complementary, returns empty object!"\
+			<< std::endl;
+	}
+	
+}
+
+DNK& DNK::operator=(const RNK& rnk){
+	if (this->capacity()) {
+		this->trim(0);
+	}
+	for (size_t i = 0; i < rnk.capacity(); ++i) {
+		this->push_back(rnk.getNuclByIndex(i));
+	}
+	return *this;
+}
+
+RNK func(size_t length) {
+	RNK example;
+	for (size_t i = 0; i < length; ++i) {
+		example.push_back((Nucl)(rand() & 3));
+	}
+	return example;
+}
+
+
 int main() {
-	RNK my_rnk, my_rnk2;
-	unsigned short nucl;
-	for (size_t i = 0; i < 10; ++i) {
-		std::cin >> nucl;
-		my_rnk.push_back((Nucl)nucl);
-	}
-	my_rnk2 = my_rnk.split(10);
-	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
-		std::cout << (short)my_rnk[i] << " ";
-	}
+	RNK rnk = func(5);
+	for (size_t i = 0; i < rnk.capacity(); ++i)
+		std::cout << (short)rnk[i] << " ";
+	DNK example(rnk, !rnk);
+	example = example.split(2);
 	std::cout << std::endl;
-	for (size_t i = 0; i < my_rnk2.capacity(); ++i) {
-		std::cout << (short)my_rnk2[i] << " ";
-	}
-	std::cout << std::endl;
-	my_rnk = my_rnk + my_rnk2;
-	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
-		std::cout << (short)my_rnk[i]<<" ";
-	}
-	std::cout << std::boolalpha << my_rnk.isComplementary(!my_rnk);
-	std::cout << std::endl;
-	my_rnk.trim(5);
-	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
-		std::cout << (short)my_rnk[i] << " ";
-	}
+	example[10] = G;
+	for (size_t i = 0; i < example.capacity(); ++i)
+		std::cout << (short)example[i] << " ";
 	return 0;
 }
