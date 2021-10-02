@@ -7,7 +7,7 @@ namespace rnk {
 		A, G, C, T
 	}Nucl;	
 
-	typedef std::unordered_map <const Nucl, int, std::hash<int>> RNK_map;
+	typedef std::unordered_map <const Nucl, size_t, std::hash<int>> RNK_map;
 
 	class RNK {
 	public:

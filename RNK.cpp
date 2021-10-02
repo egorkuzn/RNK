@@ -71,6 +71,7 @@ RNK::RNK(const RNK& other) {
 		delete baseArr;
 		size_vector = 0;
 		size_baseArr = 0;
+		cardinality.clear();
 	}
 	if (other.capacity() > 0) {
 		for (size_t i = 0; i < other.capacity(); ++i) {
@@ -88,6 +89,7 @@ RNK& RNK::operator=(const RNK& r2) {
 	if (size_vector != 0){
 		size_vector = 0;
 		size_baseArr = 0;
+		cardinality.clear();
 		delete[] baseArr;
 	}
 	for (size_t i = 0; i < r2.capacity(); ++i) {
@@ -179,6 +181,7 @@ DNK::DNK(const RNK& rnk1, const RNK& rnk2){
 DNK& DNK::operator=(const RNK& rnk){
 	if (this->capacity()) {
 		this->trim(0);
+		cardinality.clear();
 	}
 	for (size_t i = 0; i < rnk.capacity(); ++i) {
 		this->push_back(rnk.getNuclByIndex(i));
@@ -200,9 +203,11 @@ int main() {
 	for (size_t i = 0; i < rnk.capacity(); ++i)
 		std::cout << (short)rnk[i] << " ";
 	DNK example(rnk, !rnk);
+	std::cout << std::endl;
 	example = example + example;
+	example.trim(example.capacity()-1);
 	for (size_t i = 0; i < example.capacity(); ++i)
 		std::cout << (short)example[i] << " ";
-	std::cout << "A: " << example.cardinality.at(A);
+	std::cout << "A: " << example.cardinality.at(A) <<" C:"<< example.cardinality.at(C)<<" G:"<< example.cardinality.at(G)<<" T: "<< example.cardinality.at(T);
 	return 0;
 }
