@@ -14,6 +14,8 @@ void RNK::changeNuclByIndex( size_t index, Nucl elem) {
 	if (!(index < size_vector)) {
 		exit(EXIT_FAILURE);
 	}
+	--cardinality.at(getNuclByIndex(index));
+	++cardinality.at(elem);
 	baseArr[index / 4] -= ((baseArr[index / 4] >> (3 - index % 4) * 2) & 3) << ((3 - index % 4) * 2);
 	baseArr[index / 4] += elem << (3 - index % 4) * 2;
 }
@@ -43,6 +45,12 @@ void RNK::push_back(const Nucl elem){
 	++size_vector;
 	if (size_vector > size_baseArr * 4) {
 		Push();
+	}
+	if (cardinality.count(elem) == 0) {
+		cardinality.insert(RNK_map::value_type(elem, 1));
+	}
+	else{
+		++cardinality.at(elem);
 	}
 	baseArr[(size_vector - 1)/4] += (unsigned char)elem << (3 - (size_vector - 1) % 4) * 2;
 }
@@ -99,20 +107,11 @@ RNK RNK::operator+(const RNK& r2) {
 	return sum;
 }
 
-size_t RNK::cardinality(const Nucl value){
-	size_t inc = 0;
-	for (size_t i = 0; i < this->capacity(); ++i) {
-		if ((*this)[i] == value) {
-			++inc;
-		}
-	}
-	return inc;
-}
-
 void RNK::trim( size_t lastIndex){
 	for (size_t i = size_vector - 1; i >= lastIndex; --i) {
 		(*this)[i] = A;
 		if (size_vector != 0) {
+			--cardinality.at((*this)[i]);
 			--size_vector;
 		}
 		else {
@@ -201,10 +200,9 @@ int main() {
 	for (size_t i = 0; i < rnk.capacity(); ++i)
 		std::cout << (short)rnk[i] << " ";
 	DNK example(rnk, !rnk);
-	example = example.split(2);
-	std::cout << std::endl;
-	example[10] = G;
+	example = example + example;
 	for (size_t i = 0; i < example.capacity(); ++i)
 		std::cout << (short)example[i] << " ";
+	std::cout << "A: " << example.cardinality.at(A);
 	return 0;
 }

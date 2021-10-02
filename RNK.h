@@ -1,10 +1,13 @@
 #pragma once
 #include <iostream>
+#include<unordered_map>
 
 namespace rnk {
 	typedef enum Nucl : unsigned char{
 		A, G, C, T
 	}Nucl;	
+
+	typedef std::unordered_map <const Nucl, int, std::hash<int>> RNK_map;
 
 	class RNK {
 	public:
@@ -26,14 +29,13 @@ namespace rnk {
 		};
 		Nucl getNuclByIndex(const size_t index) const; //+
 		void changeNuclByIndex(const size_t index, Nucl elem);//+
-		const size_t capacity(void) const;//+		
+		const size_t capacity(void) const;//+	
 		RNK& operator=(const RNK& r2);//+
 		RNK(const RNK& other);//+
 		NuclRef operator[]( size_t index);//+
-		RNK operator+(const RNK& r2);//+
-		size_t cardinality(const Nucl value);//+
+		RNK operator+(const RNK& r2);//+		
+		RNK_map cardinality;
 		void trim( size_t lastIndex);//+		
-		//std::unordered_map< Nucl, int, std::hash<int> > cardinality();		
 		bool operator==(const RNK& r2) const;//+
 		bool operator!=(RNK& r2);//+
 		RNK operator!(void) const;//+
