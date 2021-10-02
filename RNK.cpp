@@ -52,12 +52,24 @@ const size_t RNK::capacity(void) const{
 }
 
 RNK::RNK(const RNK& other) {
-	for (size_t i = 0; i < other.capacity(); ++i) {
-		this->push_back(other.getNuclByIndex(i));
+	if (this->capacity() > 0) {
+		delete baseArr;
+		size_vector = 0;
+		size_baseArr = 0;
 	}
+	if (other.capacity() > 0) {
+		for (size_t i = 0; i < other.capacity(); ++i) {
+			this->push_back(other.getNuclByIndex(i));
+		}		
+	}		
+	size_vector = other.capacity();
+	size_baseArr = other.capacity();
 }
 
 RNK& RNK::operator=(RNK& r2) {
+	if (this == &r2) {
+		return *this;
+	}
 	if (size_vector != 0){
 		size_vector = 0;
 		size_baseArr = 0;
@@ -69,7 +81,7 @@ RNK& RNK::operator=(RNK& r2) {
 	return *this;
 }
 
-RNK RNK::operator+(RNK& r2) {
+RNK& RNK::operator+(RNK& r2) {
 	RNK sum;
 	for (size_t i = 0; i < this->capacity(); ++i) {
 		sum.push_back((*this)[i]);
@@ -121,9 +133,9 @@ bool RNK::operator==(RNK& r2) {
 }
 
 RNK& RNK::operator!(void){
-	RNK copy = *this;
+	RNK copy;
 	for (size_t i = 0; i < size_vector; ++i) {
-		copy[i] = (Nucl)(((unsigned char)3 - (Nucl)(*this)[i]) & 3);
+		copy.push_back((Nucl)(((Nucl)3 - ((Nucl)(*this)[i]) & 3)));
 	}
 	return copy;
 }
@@ -146,9 +158,12 @@ RNK& RNK::split(size_t index) {
 }
 
 int main() {
-	RNK rnk1(C, 4);	
-	RNK rnk2;
-	rnk2 = rnk1.split(2);
-
+	RNK my_rnk;
+	unsigned short nucl;
+	for (size_t i = 0; i < 10; ++i) {
+		std::cin >> nucl;
+		my_rnk.push_back((Nucl)nucl);
+	}
+	my_rnk = !my_rnk;
 	return 0;
 }
