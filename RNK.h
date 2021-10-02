@@ -27,18 +27,18 @@ namespace rnk {
 		Nucl getNuclByIndex(const size_t index) const; //+
 		void changeNuclByIndex(const size_t index, Nucl elem);//+
 		const size_t capacity(void) const;//+		
-		RNK& operator=(RNK& r2);//+
+		RNK& operator=(const RNK& r2);//+
 		RNK(const RNK& other);//+
 		NuclRef operator[]( size_t index);//+
-		RNK& operator+(RNK& r2);//+
+		RNK operator+(RNK& r2);//+
 		size_t cardinality(const Nucl value);//+
 		void trim( size_t lastIndex);//+		
 		//std::unordered_map< Nucl, int, std::hash<int> > cardinality();		
-		bool operator==(RNK& r2);//+(btw, there can be bug)
+		bool operator==(const RNK& r2);//+
 		bool operator!=(RNK& r2);//+
-		RNK& operator!(void);//+(checked, good)
-		bool isComplementary(RNK& r2);//+(however, some hren')
-		RNK& split(size_t index);//+
+		RNK operator!(void) const;//+
+		bool isComplementary(const RNK& r2);//+
+		RNK split(size_t index);//+
 	private:
 		unsigned char* baseArr = nullptr;
 		size_t size_baseArr = 0;

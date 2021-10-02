@@ -66,7 +66,7 @@ RNK::RNK(const RNK& other) {
 	size_baseArr = other.capacity();
 }
 
-RNK& RNK::operator=(RNK& r2) {
+RNK& RNK::operator=(const RNK& r2) {
 	if (this == &r2) {
 		return *this;
 	}
@@ -81,7 +81,7 @@ RNK& RNK::operator=(RNK& r2) {
 	return *this;
 }
 
-RNK& RNK::operator+(RNK& r2) {
+RNK RNK::operator+(RNK& r2) {
 	RNK sum;
 	for (size_t i = 0; i < this->capacity(); ++i) {
 		sum.push_back((*this)[i]);
@@ -120,10 +120,10 @@ void RNK::trim( size_t lastIndex){
 	}
 }
 
-bool RNK::operator==(RNK& r2) {	
+bool RNK::operator==(const RNK& r2) {	
 	if (size_vector == r2.capacity()) {
 		for (size_t i = 0; i < size_vector; ++i) {
-			if ((Nucl)(*this)[i] != (Nucl)r2[i]) {
+			if ((Nucl)(this->getNuclByIndex(i)) != (Nucl)r2.getNuclByIndex(i)) {
 				return false;
 			}
 		}
@@ -132,10 +132,10 @@ bool RNK::operator==(RNK& r2) {
 	return false;
 }
 
-RNK& RNK::operator!(void){
+RNK RNK::operator!(void) const{
 	RNK copy;
 	for (size_t i = 0; i < size_vector; ++i) {
-		copy.push_back((Nucl)(((Nucl)3 - ((Nucl)(*this)[i]) & 3)));
+		copy.push_back((Nucl)(((Nucl)3 - ((Nucl)(*this).getNuclByIndex(i)) & 3)));
 	}
 	return copy;
 }
@@ -144,11 +144,11 @@ bool RNK::operator!=(RNK& r2) {
 	return !((*this) == r2);
 }
 
-bool RNK::isComplementary(RNK& r2){
+bool RNK::isComplementary(const RNK& r2){
 	return *this == !r2;
 }
 
-RNK& RNK::split(size_t index) {
+RNK RNK::split(size_t index) {
 	RNK copy;
 	for (size_t i = index; i < size_vector; ++i) {
 		copy.push_back((*this).getNuclByIndex(i));
@@ -158,12 +158,30 @@ RNK& RNK::split(size_t index) {
 }
 
 int main() {
-	RNK my_rnk;
+	RNK my_rnk, my_rnk2;
 	unsigned short nucl;
 	for (size_t i = 0; i < 10; ++i) {
 		std::cin >> nucl;
 		my_rnk.push_back((Nucl)nucl);
 	}
-	my_rnk = !my_rnk;
+	my_rnk2 = my_rnk.split(10);
+	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
+		std::cout << (short)my_rnk[i] << " ";
+	}
+	std::cout << std::endl;
+	for (size_t i = 0; i < my_rnk2.capacity(); ++i) {
+		std::cout << (short)my_rnk2[i] << " ";
+	}
+	std::cout << std::endl;
+	my_rnk = my_rnk + my_rnk2;
+	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
+		std::cout << (short)my_rnk[i]<<" ";
+	}
+	std::cout << std::boolalpha << my_rnk.isComplementary(!my_rnk);
+	std::cout << std::endl;
+	my_rnk.trim(5);
+	for (size_t i = 0; i < my_rnk.capacity(); ++i) {
+		std::cout << (short)my_rnk[i] << " ";
+	}
 	return 0;
 }
