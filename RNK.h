@@ -1,11 +1,13 @@
-#pragma once
+#ifndef RNK_H
+#define RNK_H
+
 #include <iostream>
-#include<unordered_map>
+#include <unordered_map>
 
 namespace rnk {
-	typedef enum Nucl : unsigned char{
+	typedef enum Nucl : unsigned char {
 		A, G, C, T
-	}Nucl;	
+	}Nucl;
 
 	typedef std::unordered_map <const Nucl, size_t, std::hash<int>> RNK_map;
 
@@ -80,9 +82,6 @@ namespace rnk {
 		}
 	};
 
-	class DNK : public RNK {
-	public:
-		DNK(const RNK& rnk1,const RNK& rnk2);
-		DNK& operator=(const RNK& rnk);
-	};
 }
+
+#endif

@@ -18,10 +18,21 @@
     <ClCompile Include="RNK.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="DNK.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="RNK.h">
-      <Filter>Исходные файлы</Filter>
+    <ClInclude Include="DNK.h">
+      <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="RNK.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Текст.txt">
+      <Filter>Исходные файлы</Filter>
+    </Text>
   </ItemGroup>
 </Project>

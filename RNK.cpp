@@ -1,5 +1,4 @@
 ﻿#include "RNK.h"
-#include <cassert>
 
 using namespace rnk;
 
@@ -165,49 +164,3 @@ RNK RNK::split(size_t index) {
 	return copy;
 }
 
-DNK::DNK(const RNK& rnk1, const RNK& rnk2){
-	if (rnk1.isComplementary(rnk2)) {
-		for (size_t i = 0; i < rnk1.capacity(); ++i) {
-			this->push_back(rnk1.getNuclByIndex(i));
-		}
-	}
-	else {
-		std::cout << std::endl << "Aren't complementary, returns empty object!"\
-			<< std::endl;
-	}
-	
-}
-
-DNK& DNK::operator=(const RNK& rnk){
-	if (this->capacity()) {
-		this->trim(0);
-		cardinality.clear();
-	}
-	for (size_t i = 0; i < rnk.capacity(); ++i) {
-		this->push_back(rnk.getNuclByIndex(i));
-	}
-	return *this;
-}
-
-RNK func(size_t length) {
-	RNK example;
-	for (size_t i = 0; i < length; ++i) {
-		example.push_back((Nucl)(rand() & 3));
-	}
-	return example;
-}
-
-
-int main() {
-	RNK rnk = func(5);
-	for (size_t i = 0; i < rnk.capacity(); ++i)
-		std::cout << (short)rnk[i] << " ";
-	DNK example(rnk, !rnk);
-	std::cout << std::endl;
-	example = example + example;
-	example.trim(example.capacity()-1);
-	for (size_t i = 0; i < example.capacity(); ++i)
-		std::cout << (short)example[i] << " ";
-	std::cout << "A: " << example.cardinality.at(A) <<" C:"<< example.cardinality.at(C)<<" G:"<< example.cardinality.at(G)<<" T: "<< example.cardinality.at(T);
-	return 0;
-}
