@@ -1,6 +1,4 @@
-#ifndef DNK_H
-#define DNK_H
-
+#pragma once
 #include "RNK.h"
 
 namespace dnk {
@@ -10,5 +8,3 @@ namespace dnk {
 		DNK& operator=(const RNK& other);
 	};
 }
-
-#endif

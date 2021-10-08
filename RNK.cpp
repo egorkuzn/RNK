@@ -109,6 +109,10 @@ RNK RNK::operator+(const RNK& r2) {
 }
 
 void RNK::trim( size_t lastIndex){
+	if (size_vector <= 0) {
+		std::cout << std::endl << "Nothing to delete" << std::endl;
+		return;
+	}
 	for (size_t i = size_vector - 1; i >= lastIndex; --i) {
 		(*this)[i] = A;
 		if (size_vector != 0) {

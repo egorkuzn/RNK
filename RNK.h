@@ -1,6 +1,4 @@
-#ifndef RNK_H
-#define RNK_H
-
+#pragma once
 #include <iostream>
 #include <unordered_map>
 
@@ -15,7 +13,9 @@ namespace rnk {
 	public:
 		RNK() {};		
 		~RNK() {
-			delete[] baseArr;
+			if (baseArr) {
+				delete[] baseArr;
+			}
 		}
 		void push_back(const Nucl elem);//+
 		RNK(Nucl elem, size_t count);//+
@@ -75,7 +75,7 @@ namespace rnk {
 				delete[] baseArr;
 				baseArr = newArr;
 			}
-			if (size_baseArr == 1) {
+			else {
 				delete[] baseArr;
 				--size_baseArr;
 			}
@@ -84,4 +84,3 @@ namespace rnk {
 
 }
 
-#endif
