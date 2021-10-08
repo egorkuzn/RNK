@@ -35,7 +35,7 @@ namespace rnk {
 		RNK& operator=(const RNK& r2);//+
 		RNK(const RNK& other);//+
 		NuclRef operator[]( size_t index);//+
-		RNK operator+(const RNK& r2);//+		
+		RNK operator+(const RNK& r2) const;//+		
 		RNK_map cardinality;
 		void trim( size_t lastIndex);//+		
 		bool operator==(const RNK& r2) const;//+

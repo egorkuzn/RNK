@@ -14,7 +14,12 @@ void RNK::changeNuclByIndex( size_t index, Nucl elem) {
 		exit(EXIT_FAILURE);
 	}
 	--cardinality.at(getNuclByIndex(index));
-	++cardinality.at(elem);
+	if (cardinality.count(elem) == 0) {
+		cardinality.insert(RNK_map::value_type(elem, 1));
+	}
+	else {
+		++cardinality.at(elem);
+	}
 	baseArr[index / 4] -= ((baseArr[index / 4] >> (3 - index % 4) * 2) & 3) << ((3 - index % 4) * 2);
 	baseArr[index / 4] += elem << (3 - index % 4) * 2;
 }
@@ -97,10 +102,10 @@ RNK& RNK::operator=(const RNK& r2) {
 	return *this;
 }
 
-RNK RNK::operator+(const RNK& r2) {
+RNK RNK::operator+(const RNK& r2) const{
 	RNK sum;
 	for (size_t i = 0; i < this->capacity(); ++i) {
-		sum.push_back((*this)[i]);
+		sum.push_back((*this).getNuclByIndex(i));
 	}
 	for (size_t i = 0; i < r2.capacity(); ++i) {
 		sum.push_back(r2.getNuclByIndex(i));
