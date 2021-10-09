@@ -179,11 +179,6 @@ TEST(NegationANDisComplementary, dnk) {
 	EXPECT_TRUE((!example_dnk).isComplementary(example_dnk));
 }
 
-
-TEST(Split, rnk) {
-
-}
-
 TEST(Split, dnk) {
 
 }
@@ -194,6 +189,70 @@ TEST() {
 
 TEST() {
 
+}
+
+
+TEST(Split, rnk) {
+	RNK example_rnk_A = func(100);
+	RNK example_rnk_B = example_rnk_A.split(-1);
+	EXPECT_EQ(example_rnk_A.capacity(), 100);
+	EXPECT_EQ(example_rnk_B.capacity(), 0);
+	example_rnk_B = example_rnk_A.split(0);
+	EXPECT_EQ(example_rnk_A.capacity(), 0);
+	EXPECT_EQ(example_rnk_B.capacity(), 100);
+	RNK copy = example_rnk_B;
+	example_rnk_A = example_rnk_B.split(50);
+	for (size_t i = 0; i < 50; ++i) {
+		EXPECT_TRUE((Nucl)copy[i] == (Nucl)example_rnk_B[i]);
+	}
+	for (size_t i = 50; i < 100; ++i) {
+		EXPECT_TRUE((Nucl)copy[i] == (Nucl)example_rnk_A[i-50]);
+	}
+}
+
+TEST(Split, dnk) {
+	RNK example_rnk_A = func(100);
+	RNK example_rnk_B;
+	DNK example_dnk_A(example_rnk_A, !example_rnk_A);
+	DNK example_dnk_B(example_rnk_B, !example_rnk_B);
+	example_dnk_B = example_dnk_A.split(-1);
+	EXPECT_EQ(example_dnk_A.capacity(), 100);
+	EXPECT_EQ(example_dnk_B.capacity(), 0);
+	example_dnk_B = example_dnk_A.split(0);
+	EXPECT_EQ(example_dnk_A.capacity(), 0);
+	EXPECT_EQ(example_dnk_B.capacity(), 100);
+	RNK copy = example_dnk_B;
+	example_dnk_A = example_dnk_B.split(50);
+	for (size_t i = 0; i < 50; ++i) {
+		EXPECT_TRUE((Nucl)copy[i] == (Nucl)example_dnk_B[i]);
+	}
+	for (size_t i = 50; i < 100; ++i) {
+		EXPECT_TRUE((Nucl)copy[i] == (Nucl)example_dnk_A[i - 50]);
+	}
+}
+
+
+TEST(Cardinality, rnk) {
+	RNK example_rnk_A = func(1000);
+	size_t count = 0;
+	for (RNK_map::const_iterator it = \
+		(example_rnk_A.cardinality).begin();
+		it != example_rnk_A.cardinality.end(); ++it) {
+		count += it->second;
+	}
+	EXPECT_EQ(count, example_rnk_A.capacity());
+}
+
+TEST(Cardinality, dnk) {
+	RNK example_rnk_A = func(1000);
+	DNK example_dnk_A(example_rnk_A, !example_rnk_A);
+	size_t count = 0;
+	for (RNK_map::const_iterator it = \
+		(example_dnk_A.cardinality).begin();
+		it != example_dnk_A.cardinality.end(); ++it) {
+		count += it->second;
+	}
+	EXPECT_EQ(count, example_dnk_A.capacity());
 }
 
 TEST(TestCaseName, TestName) {
