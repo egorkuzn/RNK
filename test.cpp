@@ -1,8 +1,8 @@
 #include "pch.h"
-#include "../../RNK/RNK.cpp" // прописываем путь до .cpp файл заголовка RNK.h
-#include "../../RNK/DNK.cpp" // прописываем путь .cpp файл заголовка DNK.h
+#include "../../RNK/RNK.cpp" 
+#include "../../RNK/DNK.cpp" 
 
-RNK func(size_t length) { // необязательная функция, которая генерирует случайный объект
+RNK func(size_t length) {
 	RNK example_rnk;
 	for (size_t i = 0; i < length; ++i) {
 		example_rnk.push_back((Nucl)(rand() & 3));
@@ -10,12 +10,12 @@ RNK func(size_t length) { // необязательная функция, которая генерирует случайны
 	return example_rnk;
 }
 
-TEST(getNuclByIndex, arr_elem_rnk) { // пример теста
+TEST(getNuclByIndex, arr_elem_rnk) { 
 	RNK example_rnk = func(1000);
 	ASSERT_EQ((unsigned int)example_rnk.getNuclByIndex(5), (unsigned int)example_rnk[5]);
 }
 
-TEST(getNuclByIndex, arr_elem_dnk) { // пример теста
+TEST(getNuclByIndex, arr_elem_dnk) { 
 	RNK example_rnk = func(1000);
 	DNK example_dnk(example_rnk, !example_rnk);
 	ASSERT_EQ((unsigned int)example_dnk.getNuclByIndex(5), (unsigned int)example_dnk[5]);
@@ -182,15 +182,6 @@ TEST(NegationANDisComplementary, dnk) {
 TEST(Split, dnk) {
 
 }
-
-TEST() {
-
-}
-
-TEST() {
-
-}
-
 
 TEST(Split, rnk) {
 	RNK example_rnk_A = func(100);
