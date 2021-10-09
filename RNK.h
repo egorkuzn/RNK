@@ -13,7 +13,7 @@ namespace rnk {
 	public:
 		RNK() {};		
 		~RNK() {
-			if (baseArr) {
+			if (size_vector != 0) {
 				delete[] baseArr;
 			}
 		}
