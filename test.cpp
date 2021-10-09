@@ -179,10 +179,6 @@ TEST(NegationANDisComplementary, dnk) {
 	EXPECT_TRUE((!example_dnk).isComplementary(example_dnk));
 }
 
-TEST(Split, dnk) {
-
-}
-
 TEST(Split, rnk) {
 	RNK example_rnk_A = func(100);
 	RNK example_rnk_B = example_rnk_A.split(-1);
