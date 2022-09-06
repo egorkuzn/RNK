@@ -1,0 +1,52 @@
+[
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/MAIN.dir/RNK.cpp.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/RNK.cpp",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/RNK.cpp"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/MAIN.dir/main.cpp.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/main.cpp",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/main.cpp"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/MAIN.dir/DNK.cpp.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/DNK.cpp",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/DNK.cpp"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/RNK.dir/RNK.cpp.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/RNK.cpp",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/RNK.cpp"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build",
+  "command": "/bin/x86_64-linux-gnu-g++-9    -g   -o CMakeFiles/RNK.dir/DNK.cpp.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/DNK.cpp",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/DNK.cpp"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/unit_tests",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -std=gnu++11 -o CMakeFiles/hello_test.dir/test.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/test.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/test.cc"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-build/googlemock",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-build/googlemock",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/include -I/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-build/googletest",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-build/googletest",
+  "command": "/bin/x86_64-linux-gnu-g++-9   -I/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -I/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/src/gtest-all.cc"
+}
+]
