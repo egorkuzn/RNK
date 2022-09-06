@@ -1,1 +1,0 @@
-/bin/x86_64-linux-gnu-g++-9  -g   CMakeFiles/MAIN.dir/RNK.cpp.o CMakeFiles/MAIN.dir/main.cpp.o CMakeFiles/MAIN.dir/DNK.cpp.o  -o MAIN 

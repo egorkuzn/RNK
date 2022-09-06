@@ -1,2 +1,0 @@
-/bin/ar qc libRNK.a  CMakeFiles/RNK.dir/RNK.cpp.o CMakeFiles/RNK.dir/DNK.cpp.o
-/bin/ranlib libRNK.a
