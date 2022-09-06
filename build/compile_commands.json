@@ -26,8 +26,8 @@
 },
 {
   "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/unit_tests",
-  "command": "/bin/x86_64-linux-gnu-g++-9   -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -std=gnu++11 -o CMakeFiles/hello_test.dir/hello_test.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/hello_test.cc",
-  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/hello_test.cc"
+  "command": "/bin/x86_64-linux-gnu-g++-9   -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest/include -isystem /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-src/googletest  -g   -std=gnu++11 -o CMakeFiles/hello_test.dir/test.cc.o -c /home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/test.cc",
+  "file": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/unit_tests/test.cc"
 },
 {
   "directory": "/home/egorkuzn/egorkuzn/vscode_prjcts/RNK/build/_deps/googletest-build/googlemock",
